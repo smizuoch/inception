@@ -1,0 +1,60 @@
+# -------------------------------------------------------------------
+# OS-generated files
+# -------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------------------------------------------------
+# Editor/IDE/project config files
+# -------------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# -------------------------------------------------------------------
+# Log files
+# -------------------------------------------------------------------
+*.log
+
+# -------------------------------------------------------------------
+# Environment variable files
+# (Store your credentials in .env or similar, but never commit them!)
+# -------------------------------------------------------------------
+.env
+.env.*
+*.env
+
+# -------------------------------------------------------------------
+# Docker secrets and other credentials
+# -------------------------------------------------------------------
+# If you keep secrets in a "secrets" directory, ignore it entirely:
+secrets/*
+# ...but if you need to keep the folder itself in Git for structure:
+!secrets/.gitkeep
+
+# -------------------------------------------------------------------
+# Docker-related ignores
+# -------------------------------------------------------------------
+**/.dockerignore
+# If you create any custom Docker Compose override files locally:
+docker-compose.override.yml
+
+# -------------------------------------------------------------------
+# Local data/volumes
+# (Adjust the path if your volumes are stored inside the project folder)
+# -------------------------------------------------------------------
+data/
+data/*
+
+# -------------------------------------------------------------------
+# Backup or archive files
+# -------------------------------------------------------------------
+*.bak
+*.old
+*.tmp
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
