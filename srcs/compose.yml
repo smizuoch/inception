@@ -7,11 +7,10 @@ services:
     container_name: wordpress
     volumes:
       - ./requirements/wordpress/tools:/var/www/html
-    expose:
-      - "9000"
     networks:
-      - inception-net
-
+      inception:
+        ipv4_address: 172.18.0.3
+        
   nginx:
     build: 
       context: ./requirements/nginx
@@ -24,9 +23,15 @@ services:
     depends_on:
       - wordpress
     networks:
-      - inception-net
+      inception:
+        ipv4_address: 172.18.0.4
     restart: always
     
 networks:
-  inception-net:
+  inception:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.18.0.0/24
+          gateway: 172.18.0.1

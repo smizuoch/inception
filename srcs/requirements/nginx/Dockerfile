@@ -4,7 +4,7 @@
 FROM debian:bullseye
 
 # パッケージインストール: NGINX, opensslなど
-RUN ["/bin/bash", "-c", "apt update && apt install -y nginx"]
+RUN ["/bin/bash", "-c", "apt update && apt install -y nginx  procps openssl"]
 
 # /etc/nginx などに設定ファイルを配置する準備
 # ディレクトリを作っておく
@@ -18,4 +18,4 @@ COPY conf/nginx.conf /etc/nginx/nginx.conf
 # COPY conf/ssl/wil.42.fr.key /etc/nginx/ssl/wil.42.fr.key
 
 # NGINXをフォアグラウンドで起動するためのコマンドを指定
-CMD ["nginx"]
+CMD ["nginx", "-g", "daemon off;"]
