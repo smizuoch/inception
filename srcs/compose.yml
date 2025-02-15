@@ -1,34 +1,32 @@
 services:
-  mariadb:
-    build: ./requirements/mariadb
-    # 例: image: mariadb:latest は禁止なので書かない
-    # 代わりにDockerfileを自前で書き、そこで FROM debian:<version> などを指定
-    volumes:
-      - mariadb_volume:/var/lib/mysql
-    networks:
-      - inception_network
-    # restart: always なども指定
 
   wordpress:
-    build: ./requirements/wordpress
+    build: 
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    container_name: wordpress
     volumes:
-      - wordpress_files:/var/www/html
+      - ./requirements/wordpress/tools:/var/www/html
+    expose:
+      - "9000"
     networks:
-      - inception_network
+      - inception-net
 
   nginx:
-    build: ./requirements/nginx
+    build: 
+      context: ./requirements/nginx
+      dockerfile: Dockerfile
+    container_name: nginx
     ports:
-      - "443:443"
+      - "8080:80"
+    volumes:
+      - ./requirements/wordpress/tools:/var/www/html
     depends_on:
       - wordpress
     networks:
-      - inception_network
-
-volumes:
-  mariadb_volume:
-  wordpress_files:
-
+      - inception-net
+    restart: always
+    
 networks:
-  inception_network:
+  inception-net:
     driver: bridge

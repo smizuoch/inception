@@ -11,11 +11,11 @@ RUN ["/bin/bash", "-c", "apt update && apt install -y nginx"]
 RUN mkdir -p /etc/nginx/conf.d /etc/nginx/ssl /var/www/html
 
 # メイン設定ファイル (nginx.conf) をコンテナにコピー
-# COPY conf/nginx.conf /etc/nginx/nginx.conf
+COPY conf/nginx.conf /etc/nginx/nginx.conf
 
 # (もしSSL証明書と鍵ファイルをDockerfileビルド時にコピーするなら)
 # COPY conf/ssl/wil.42.fr.crt /etc/nginx/ssl/wil.42.fr.crt
 # COPY conf/ssl/wil.42.fr.key /etc/nginx/ssl/wil.42.fr.key
 
 # NGINXをフォアグラウンドで起動するためのコマンドを指定
-CMD ["/bin/bash"]
+CMD ["nginx"]
